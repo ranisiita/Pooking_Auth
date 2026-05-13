@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Microservicio.Pooking.Auth.Api/Microservicio.Pooking.Auth.Api.csproj" />
+    <Project Path="src/Microservicio.Pooking.Auth.Business/Microservicio.Pooking.Auth.Business.csproj" />
+    <Project Path="src/Microservicio.Pooking.Auth.DataAcces/Microservicio.Pooking.Auth.DataAccess.csproj" />
+    <Project Path="src/Microservicio.Pooking.Auth.DataManagement/Microservicio.Pooking.Auth.DataManagement.csproj" />
+  </Folder>
+</Solution>

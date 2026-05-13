@@ -1,0 +1,6 @@
+@Microservicio.Pooking.Auth.Api_HostAddress = http://localhost:5153
+
+GET {{Microservicio.Pooking.Auth.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
