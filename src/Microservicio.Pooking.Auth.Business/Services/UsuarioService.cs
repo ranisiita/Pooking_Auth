@@ -34,6 +34,19 @@ public class UsuarioService : IUsuarioService
         return UsuarioBusinessMapper.ToResponse(model);
     }
 
+    public async Task<UsuarioResponse?> ObtenerPorGuidConRolesAsync(
+        Guid usuarioGuid,
+        CancellationToken cancellationToken = default)
+    {
+        var model = await _usuarioDataService
+            .ObtenerPorGuidConRolesAsync(usuarioGuid, cancellationToken);
+
+        if (model is null)
+            throw new NotFoundException($"No se encontró el usuario con GUID '{usuarioGuid}'.");
+
+        return UsuarioBusinessMapper.ToResponse(model);
+    }
+
     public async Task<DataPagedResult<UsuarioResponse>> BuscarAsync(
         UsuarioFiltroRequest filtro,
         CancellationToken cancellationToken = default)

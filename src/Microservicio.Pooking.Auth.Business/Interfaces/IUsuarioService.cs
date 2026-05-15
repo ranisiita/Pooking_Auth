@@ -18,6 +18,10 @@ public interface IUsuarioService
         Guid usuarioGuid,
         CancellationToken cancellationToken = default);
 
+    Task<UsuarioResponse?> ObtenerPorGuidConRolesAsync(
+        Guid usuarioGuid,
+        CancellationToken cancellationToken = default);
+
     Task<DataPagedResult<UsuarioResponse>> BuscarAsync(
         UsuarioFiltroRequest filtro,
         CancellationToken cancellationToken = default);

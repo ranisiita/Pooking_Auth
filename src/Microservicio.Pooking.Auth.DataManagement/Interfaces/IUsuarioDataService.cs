@@ -21,6 +21,10 @@ public interface IUsuarioDataService
         Guid usuarioGuid,
         CancellationToken cancellationToken = default);
 
+    Task<UsuarioDataModel?> ObtenerPorGuidConRolesAsync(
+        Guid usuarioGuid,
+        CancellationToken cancellationToken = default);
+
     Task<UsuarioDataModel?> ObtenerPorUsernameAsync(
         string username,
         CancellationToken cancellationToken = default);

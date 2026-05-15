@@ -88,7 +88,7 @@ public class UsuarioRepository : IUsuarioRepository
     // Lecturas con roles
     // -------------------------------------------------------------------------
 
-    public async Task<UsuarioAppEntity?> ObtenerConRolesPorGuidAsync(
+    public async Task<UsuarioAppEntity?> ObtenerPorGuidConRolesAsync(
         Guid usuarioGuid,
         CancellationToken cancellationToken = default)
     {

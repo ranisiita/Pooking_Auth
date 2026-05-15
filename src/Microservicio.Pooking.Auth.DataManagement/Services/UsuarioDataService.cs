@@ -29,7 +29,7 @@ public class UsuarioDataService : IUsuarioDataService
         CancellationToken cancellationToken = default)
     {
         var entity = await _unitOfWork.UsuarioRepository
-            .ObtenerConRolesPorGuidAsync(
+            .ObtenerPorGuidConRolesAsync(
                 // Necesitamos por id: usamos ObtenerPorIdAsync y luego cargamos roles
                 // via segundo query si hace falta, pero aquí usamos el método base.
                 // Para mantener la carga de roles se hace en dos pasos:
@@ -42,7 +42,7 @@ public class UsuarioDataService : IUsuarioDataService
         if (entityBase is null) return null;
 
         var entityConRoles = await _unitOfWork.UsuarioRepository
-            .ObtenerConRolesPorGuidAsync(entityBase.UsuarioGuid, cancellationToken);
+            .ObtenerPorGuidConRolesAsync(entityBase.UsuarioGuid, cancellationToken);
 
         return entityConRoles is null ? null : UsuarioDataMapper.ToDataModel(entityConRoles);
     }
@@ -52,7 +52,17 @@ public class UsuarioDataService : IUsuarioDataService
         CancellationToken cancellationToken = default)
     {
         var entity = await _unitOfWork.UsuarioRepository
-            .ObtenerConRolesPorGuidAsync(usuarioGuid, cancellationToken);
+            .ObtenerPorGuidConRolesAsync(usuarioGuid, cancellationToken);
+
+        return entity is null ? null : UsuarioDataMapper.ToDataModel(entity);
+    }
+
+    public async Task<UsuarioDataModel?> ObtenerPorGuidConRolesAsync(
+        Guid usuarioGuid,
+        CancellationToken cancellationToken = default)
+    {
+        var entity = await _unitOfWork.UsuarioRepository
+            .ObtenerPorGuidConRolesAsync(usuarioGuid, cancellationToken);
 
         return entity is null ? null : UsuarioDataMapper.ToDataModel(entity);
     }
@@ -79,7 +89,7 @@ public class UsuarioDataService : IUsuarioDataService
         if (entity is null) return null;
 
         var entityConRoles = await _unitOfWork.UsuarioRepository
-            .ObtenerConRolesPorGuidAsync(entity.UsuarioGuid, cancellationToken);
+            .ObtenerPorGuidConRolesAsync(entity.UsuarioGuid, cancellationToken);
 
         return entityConRoles is null ? null : UsuarioDataMapper.ToDataModel(entityConRoles);
     }

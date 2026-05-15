@@ -1,7 +1,9 @@
 using Microservicio.Pooking.Auth.Api.Extensions;
 using Microservicio.Pooking.Auth.Api.Middleware;
+using Microservicio.Pooking.Auth.Api.Services;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +25,7 @@ builder.Services.AddPookingCors(builder.Configuration);
 builder.Services.AddCustomAuthentication(builder.Configuration);
 builder.Services.AddCustomSwagger();
 builder.Services.AddAuthorization();
+builder.Services.AddGrpc();
 
 // -------------------------------------------------------------------------
 // Módulo Auth
@@ -51,5 +54,6 @@ app.UseCors(CorsExtensions.PolicyName);
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapGrpcService<AuthGrpcService>();
 
 app.Run();

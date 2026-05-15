@@ -58,7 +58,7 @@ public interface IUsuarioRepository
     /// Obtiene un usuario con sus roles activos cargados (eager loading).
     /// Útil para validaciones de autorización en la capa de negocio.
     /// </summary>
-    Task<UsuarioAppEntity?> ObtenerConRolesPorGuidAsync(
+    Task<UsuarioAppEntity?> ObtenerPorGuidConRolesAsync(
         Guid usuarioGuid,
         CancellationToken cancellationToken = default);
 
